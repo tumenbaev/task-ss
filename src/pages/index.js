@@ -1,24 +1,12 @@
 import React, { useRef, useEffect } from "react"
-import styled from "styled-components"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Form from '../components/form'
 
 import Sendsay from "sendsay-api/dist/sendsay-api.cjs"
 
 const apiKey =
   "18WL7bxHBYLz4AlAJeJs3paxcyOoB_k3YlERb13fFB8bu5d-08ruJ4dDXCq7hopbA1Rhet-I29WsidEUH"
-
-const Form = styled.form`
-  border: 1px solid lightgray;
-  padding: 20px;
-  margin: 0 auto;
-  text-align: center;
-`
-
-const Button = styled.button`
-  padding: 5px 20px;
-`
 
 const IndexPage = () => {
   const instance = useRef({})
@@ -52,16 +40,10 @@ const IndexPage = () => {
     console.info("inst", sendsay)
   })
 
-
   return (
     <Layout>
       <SEO title="Home" />
-      <Form>
-        <label>
-          <input type="text" />
-        </label>
-        <Button>Отправить</Button>
-      </Form>
+      <Form />
     </Layout>
   )
 }

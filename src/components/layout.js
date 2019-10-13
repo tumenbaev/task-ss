@@ -12,21 +12,27 @@ import styled from 'styled-components'
 
 import "./reset.css"
 import './layout.css'
-import Logo from "../assets/LOGO.svg"
+import Logo from "../assets/logo.svg"
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 800px;
+`
+
+const Header = styled.header`
+  margin-top: 40px;
+  line-height: 0;
+  margin-bottom: 20px;
 `
 
 const Layout = ({ children }) => {
   return (
     <Container>
-      <header>
+      <Header>
         <Link to="/">
           <Logo />
         </Link>
-      </header>
+      </Header>
       <main>{children}</main>
     </Container>
   )
