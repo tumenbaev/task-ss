@@ -5,14 +5,14 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import "./reset.css"
+import './reset.css'
 import './layout.css'
-import Logo from "../assets/logo.svg"
+import Logo from '../assets/logo.svg'
 
 const Container = styled.div`
   margin: 0 auto;

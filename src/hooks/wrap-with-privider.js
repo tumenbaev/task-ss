@@ -1,6 +1,6 @@
-import React from "react"
-import { Provider } from "react-redux"
-import createStore from "../redux/createStore"
+import React from 'react'
+import { Provider } from 'react-redux'
+import createStore from '../redux/createStore'
 
 export default ({ element }) => {
   const store = createStore()

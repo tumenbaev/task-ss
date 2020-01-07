@@ -1,4 +1,4 @@
-export const CHANGE = "task-sendsay/form/change"
+export const CHANGE = 'task-sendsay/form/change'
 
 export default function formReducer(state = {}, action) {
   console.info('def form', state)

@@ -1,5 +1,5 @@
-import { createStore, combineReducers } from "redux"
-import * as reducers from "../redux"
+import { createStore, combineReducers } from 'redux'
+import * as reducers from '../redux'
 
 const reducer = combineReducers(reducers)
 

@@ -1,7 +1,7 @@
-import React from "react"
-import Input from "../atoms/input"
-import { connect } from "react-redux"
-import { change } from "../../redux/form"
+import React from 'react'
+import Input from '../atoms/input'
+import { connect } from 'react-redux'
+import { change } from '../../redux/form'
 
 const mapStateToProps = (state, ownProps) => {
   const { form } = state
@@ -20,7 +20,4 @@ function InputField({ value, name, onChange }) {
   return <Input type="text" value={value} name={name} onChange={onChange} />
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(InputField)
+export default connect(mapStateToProps, mapDispatchToProps)(InputField)

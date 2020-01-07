@@ -1,5 +1,5 @@
-import Clip from "../../assets/clip.svg"
-import React from "react"
+import Clip from '../../assets/clip.svg'
+import React from 'react'
 
 const AttachButton = () => (
   <AttachButton>

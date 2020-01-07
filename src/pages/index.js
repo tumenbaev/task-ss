@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import React, { useRef, useEffect } from 'react'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Form from '../components/form'
 
-import Sendsay from "sendsay-api/dist/sendsay-api.cjs"
+import Sendsay from 'sendsay-api/dist/sendsay-api.cjs'
 
 const apiKey =
-  "18WL7bxHBYLz4AlAJeJs3paxcyOoB_k3YlERb13fFB8bu5d-08ruJ4dDXCq7hopbA1Rhet-I29WsidEUH"
+  '18WL7bxHBYLz4AlAJeJs3paxcyOoB_k3YlERb13fFB8bu5d-08ruJ4dDXCq7hopbA1Rhet-I29WsidEUH'
 
 const IndexPage = () => {
   const instance = useRef({})
@@ -37,7 +37,7 @@ const IndexPage = () => {
       console.info(error)
     })
      */
-    console.info("inst", sendsay)
+    console.info('inst', sendsay)
   })
 
   return (
