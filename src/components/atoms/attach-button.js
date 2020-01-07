@@ -1,8 +1,6 @@
 import styled from "styled-components"
-import Clip from "../../assets/clip.svg"
-import React from "react"
 
-const Attach = styled.button`
+const AttachButton = styled.button`
   border: none;
   padding: 0;
   display: flex;
@@ -16,12 +14,5 @@ const Attach = styled.button`
     margin-left: 5px;
   }
 `
-
-const AttachButton = () => (
-  <Attach>
-    <Clip />
-    <span>Прикрепить файл</span>
-  </Attach>
-)
 
 export default AttachButton

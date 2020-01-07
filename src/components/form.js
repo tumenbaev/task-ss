@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import AttachButton from "./fields/attach"
+//import AttachButton from "./fields/attach"
 import Input from "./fields/input"
-import InputGroup from "./fields/input-group"
-import TextArea from "./fields/text-area"
-import SubmitButton from "./fields/submit-button"
+import InputGroup from "./atoms/input-group"
+//import TextArea from "./fields/text-area"
+//import SubmitButton from "./fields/submit-button"
 
 const Form = styled.form`
   background: #ffffff;
@@ -39,27 +39,27 @@ export default () => {
       <Row>
         <Label>От кого</Label>
         <InputGroup>
-          <Input type="text" placeholder="Имя" />
-          <Input type="text" placeholder="Email" />
+          <Input name="senderName" placeholder="Имя" />
+          <Input name="senderEmail" placeholder="Email" />
         </InputGroup>
       </Row>
       <Row>
         <Label>Кому</Label>
         <InputGroup>
-          <Input type="text" placeholder="Имя" />
-          <Input type="text" placeholder="Email" />
+          <Input name="receiverName" placeholder="Имя" />
+          <Input name="receiverEmail" placeholder="Email" />
         </InputGroup>
       </Row>
       <Row>
         <Label>Тема письма</Label>
-        <Input type="text" />
+        <Input name="subject" />
       </Row>
       <Row>
         <Label>Сообщение</Label>
-        <TextArea type="text" />
-        <AttachButton />
+        {/*<TextArea />*/}
+        {/*<AttachButton />*/}
       </Row>
-      <SubmitButton>Отправить</SubmitButton>
+      {/*<SubmitButton>Отправить</SubmitButton>*/}
     </Form>
   )
 }

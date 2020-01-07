@@ -1,24 +1,26 @@
-import styled from "styled-components"
+import React from "react"
+import Input from "../atoms/input"
+import { connect } from "react-redux"
+import { change } from "../../redux/form"
 
-const Input = styled.input`
-  outline: none;
-  width: 100%;
-  border: 1px solid #dddddd;
-  position: relative;
-  border-radius: 5px;
-  padding: 0 10px;
-
-  :focus {
-    margin-left: -1px;
-    margin-top: -1px;
-    margin-bottom: -1px;
-    border: 2px solid #45a5ff;
-    z-index: 1;
+const mapStateToProps = (state, ownProps) => {
+  const { form } = state
+  return {
+    value: form[ownProps.name],
   }
+}
 
-  ::placeholder {
-    opacity: 0.4;
+const mapDispatchToProps = dispatch => {
+  return {
+    onChange: event => dispatch(change(event.target.value)),
   }
-`
+}
 
-export default Input
+function InputField({ value, name, onChange }) {
+  return <Input type="text" value={value} name={name} onChange={onChange} />
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InputField)
