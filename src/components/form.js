@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-//import AttachButton from "./fields/attach"
+import AttachButton from './molecules/attach'
 import Input from './fields/input'
 import InputGroup from './atoms/input-group'
-//import TextArea from "./fields/text-area"
-//import SubmitButton from "./fields/submit-button"
+import TextArea from './fields/text-area'
+import SubmitButton from './atoms/submit-button'
+import { useDispatch, useSelector } from 'react-redux'
+import { send } from '../redux/api'
 
 const Form = styled.form`
   background: #ffffff;
@@ -33,33 +35,57 @@ const Label = styled.div`
 `
 
 export default () => {
+  const dispatch = useDispatch()
+  const payload = useSelector(store => {
+    const { form } = store
+    const {
+      subject,
+      senderName,
+      senderEmail,
+      receiverName,
+      receiverEmail,
+      message,
+    } = form
+    return {
+      subject,
+      from: { name: senderName, email: senderEmail },
+      to: { name: receiverName, email: receiverEmail },
+      message,
+    }
+  })
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    dispatch(send(payload))
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Header>Отправлялка сообщений</Header>
       <Row>
         <Label>От кого</Label>
         <InputGroup>
-          <Input name="senderName" placeholder="Имя" />
-          <Input name="senderEmail" placeholder="Email" />
+          <Input name='senderName' placeholder='Имя' />
+          <Input name='senderEmail' placeholder='Email' />
         </InputGroup>
       </Row>
       <Row>
         <Label>Кому</Label>
         <InputGroup>
-          <Input name="receiverName" placeholder="Имя" />
-          <Input name="receiverEmail" placeholder="Email" />
+          <Input name='receiverName' placeholder='Имя' />
+          <Input name='receiverEmail' placeholder='Email' />
         </InputGroup>
       </Row>
       <Row>
         <Label>Тема письма</Label>
-        <Input name="subject" />
+        <Input name='subject' />
       </Row>
       <Row>
         <Label>Сообщение</Label>
-        {/*<TextArea />*/}
-        {/*<AttachButton />*/}
+        <TextArea name='message' />
+        <AttachButton />
       </Row>
-      {/*<SubmitButton>Отправить</SubmitButton>*/}
+      <SubmitButton>Отправить</SubmitButton>
     </Form>
   )
 }

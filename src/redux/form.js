@@ -1,16 +1,29 @@
 export const CHANGE = 'task-sendsay/form/change'
 
-export default function formReducer(state = {}, action) {
-  console.info('def form', state)
+const initialState = {
+  senderName: 'foo',
+  senderEmail: 'noreply@example.com',
+  receiverName: 'rfoo',
+  receiverEmail: 'tumenbaev@gmail.com',
+  subject: 'some subj',
+  message: 'message',
+}
+
+export default function formReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE:
-      return state
+      const { name, value } = action
+      return {
+        ...state,
+        [name]: value,
+      }
     default:
       return state
   }
 }
 
-export const change = value => ({
+export const change = (name, value) => ({
   type: CHANGE,
   value,
+  name,
 })

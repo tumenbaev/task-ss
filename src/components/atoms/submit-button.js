@@ -9,6 +9,7 @@ const SubmitButton = styled.button`
   color: white;
   background: linear-gradient(180deg, #45a6ff 0%, #0055fb 100%), #c4c4c4;
   border-radius: 5px;
+  border: 2px solid #a4d3fd;
 `
 
 export default SubmitButton

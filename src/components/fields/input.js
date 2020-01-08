@@ -1,23 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Input from '../atoms/input'
-import { connect } from 'react-redux'
-import { change } from '../../redux/form'
+import useField from '../../redux/useField'
 
-const mapStateToProps = (state, ownProps) => {
-  const { form } = state
-  return {
-    value: form[ownProps.name],
-  }
+function InputField({ name }) {
+  const [value, onChange] = useField(name)
+  return <Input type='text' value={value} name={name} onChange={onChange} />
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onChange: event => dispatch(change(event.target.value)),
-  }
-}
-
-function InputField({ value, name, onChange }) {
-  return <Input type="text" value={value} name={name} onChange={onChange} />
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputField)
+export default memo(InputField)

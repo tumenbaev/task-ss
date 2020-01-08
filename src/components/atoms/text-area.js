@@ -5,7 +5,7 @@ const TextArea = styled.textarea`
   line-height: 25px;
   outline: none;
   border: 1px solid #dddddd;
-  border-radius: 5px;
+  border-radius: 7px;
   width: 100%;
   resize: none;
   min-height: 140px;
@@ -14,6 +14,8 @@ const TextArea = styled.textarea`
   :focus {
     border: 2px solid #45a5ff;
     margin-left: -1px;
+    margin-top: -1px;
+    margin-bottom: 1px;
   }
 `
 
