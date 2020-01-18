@@ -1,12 +1,15 @@
-import Clip from '../../assets/clip.svg'
-import AttachButton from '../atoms/attach-button'
 import React from 'react'
+import Clip from '../../assets/clip.svg'
+import LinkButton from '../atoms/link-button'
+import Icon from '../atoms/icon'
 
 const Attach = () => (
-  <AttachButton>
-    <Clip />
+  <LinkButton>
+    <Icon>
+      <Clip />
+    </Icon>
     <span>Прикрепить файл</span>
-  </AttachButton>
+  </LinkButton>
 )
 
 export default Attach

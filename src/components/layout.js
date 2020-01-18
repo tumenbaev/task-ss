@@ -17,6 +17,7 @@ import Logo from '../assets/logo.svg'
 const Container = styled.div`
   margin: 0 auto;
   max-width: 800px;
+  min-width: 450px;
 `
 
 const Header = styled.header`
@@ -29,7 +30,7 @@ const Layout = ({ children }) => {
   return (
     <Container>
       <Header>
-        <Link to="/">
+        <Link to='/'>
           <Logo />
         </Link>
       </Header>

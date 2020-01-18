@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import AttachButton from './molecules/attach'
+import Attach from './molecules/attach'
 import Input from './fields/input'
 import InputGroup from './atoms/input-group'
 import TextArea from './fields/text-area'
 import SubmitButton from './atoms/submit-button'
 import { useDispatch, useSelector } from 'react-redux'
 import { send } from '../redux/api'
+import Delete from './molecules/delete'
+import Grid from './atoms/grid'
+import Label from './atoms/label'
+import Row from './atoms/row'
 
 const Form = styled.form`
   background: #ffffff;
@@ -21,17 +25,6 @@ const Header = styled.h1`
   font-weight: normal;
   font-size: 30px;
   line-height: 40px;
-`
-
-const Row = styled.div`
-  margin-bottom: 20px;
-`
-
-const Label = styled.div`
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 5px;
 `
 
 export default () => {
@@ -83,7 +76,11 @@ export default () => {
       <Row>
         <Label>Сообщение</Label>
         <TextArea name='message' />
-        <AttachButton />
+        <Grid>
+          <Delete label='somefile.jpg' />
+          <Delete label='somefile.jpg' />
+        </Grid>
+        <Attach />
       </Row>
       <SubmitButton>Отправить</SubmitButton>
     </Form>
