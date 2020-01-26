@@ -7,7 +7,6 @@ const LinkButton = styled.button`
   align-items: center;
   vertical-align: middle;
   color: ${props => (props.danger ? '#FF6666' : '#0055fb')};
-  font-size: 16px;
   line-height: 20px;
   background: none;
 

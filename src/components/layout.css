@@ -1,12 +1,13 @@
 html {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
+  font-size: 16px;
 }
 
-body, h1 {
+body,
+h1 {
   font-family: 'SF Pro Text', sans-serif;
 }
 
 body {
-  font-size: 18px;
   line-height: 30px;
 }

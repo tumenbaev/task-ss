@@ -2,7 +2,7 @@ export const CHANGE = 'task-sendsay/form/change'
 
 const initialState = {
   senderName: 'foo',
-  senderEmail: 'noreply@example.com',
+  senderEmail: 'tumenbaev@gmail.com',
   receiverName: 'rfoo',
   receiverEmail: 'tumenbaev@gmail.com',
   subject: 'some subj',

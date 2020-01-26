@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 const TextArea = styled.textarea`
-  font-size: 16px;
   line-height: 25px;
   outline: none;
   border: 1px solid #dddddd;

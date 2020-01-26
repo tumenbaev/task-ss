@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const SubmitButton = styled.button`
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 38px;
   padding: 0;
   box-sizing: content-box;

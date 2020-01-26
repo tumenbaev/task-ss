@@ -7,6 +7,7 @@ const Input = styled.input`
   position: relative;
   border-radius: 5px;
   padding: 0 10px;
+  font-size: 1.125rem;
 
   :focus {
     margin-left: -1px;

@@ -11,7 +11,6 @@ const DeleteWrap = styled.div`
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px 15px 10px 10px;
-  font-size: 16px;
   line-height: 20px;
   min-width: 0;
 `

@@ -23,7 +23,7 @@ const Header = styled.h1`
   color: black;
   margin-bottom: 20px;
   font-weight: normal;
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 40px;
 `
 
