@@ -6,7 +6,7 @@ import InputGroup from './atoms/input-group'
 import TextArea from './fields/text-area'
 import SubmitButton from './atoms/submit-button'
 import { useDispatch, useSelector } from 'react-redux'
-import { send } from '../redux/api'
+import { sendAndTrack } from '../redux/messages'
 import Delete from './molecules/delete'
 import Grid from './atoms/grid'
 import Label from './atoms/label'
@@ -49,7 +49,7 @@ export default () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    dispatch(send(payload))
+    dispatch(sendAndTrack(payload))
   }
 
   return (

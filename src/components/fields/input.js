@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import Input from '../atoms/input'
-import useField from '../../redux/useField'
+import useField from '../../redux/utils/useField'
 
 function InputField({ name }) {
   const [value, onChange] = useField(name)

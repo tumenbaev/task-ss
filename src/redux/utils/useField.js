@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
 import { useMemo, useCallback } from 'react'
-import { change } from './form'
+import { change } from '../form'
 
 const getValueSelector = name =>
   createSelector(

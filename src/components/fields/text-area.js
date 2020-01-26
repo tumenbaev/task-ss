@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import TextArea from '../atoms/text-area'
-import useField from '../../redux/useField'
+import useField from '../../redux/utils/useField'
 
 function TextAreaField({ name }) {
   const [value, onChange] = useField(name)

@@ -1,5 +1,5 @@
 import Sendsay from 'sendsay-api/dist/sendsay-api.cjs'
-import { SS_SEND } from './actions'
+import { SS_SEND, SS_TRACK } from './actions'
 const apiKey =
   '18WL7bxHBYLz4AlAJeJs3paxcyOoB_k3YlERb13fFB8bu5d-08ruJ4dDXCq7hopbA1Rhet-I29WsidEUH'
 
@@ -20,14 +20,15 @@ const api = {
         sendwhen: 'test',
         mca: [to.email],
       })
-      .then(
-        response => {
-          return response['track.id']
-        },
-        error => {
-          console.error(error)
-        }
-      )
+      .then(response => response['track.id'])
+  },
+  track: ({ id }) => {
+    return sendsay
+      .performRequest({
+        action: SS_TRACK,
+        id,
+      })
+      .then(response => response.obj.status)
   },
 }
 
