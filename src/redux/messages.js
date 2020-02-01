@@ -40,6 +40,7 @@ const dataReducer = (state, action) => {
           ...state,
           [action.response]: {
             ...action.payload,
+            date: action.date,
             status: 0,
           },
         }
@@ -65,9 +66,10 @@ const dataReducer = (state, action) => {
   return state
 }
 
-export const send = payload => ({
+export const send = (payload, date) => ({
   type: SEND,
   sendsay: payload,
+  date,
 })
 
 export const track = payload => ({
@@ -96,7 +98,7 @@ const trackTillEnd = id => dispatch => {
 }
 
 export const sendAndTrack = payload => dispatch => {
-  return dispatch(send(payload)).then(({ response: id }) => {
+  return dispatch(send(payload, Date.now())).then(({ response: id }) => {
     window.scrollTo(0, document.body.scrollHeight)
     return dispatch(trackTillEnd(id))
   })

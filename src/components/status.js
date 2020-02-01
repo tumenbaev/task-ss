@@ -36,8 +36,8 @@ export default () => {
           <TableHeader>Статус</TableHeader>
         </tr>
         {messageIds.map(id => {
-          const { subject, status } = data[id]
-          return <TableRow subject={subject} status={status} />
+          const { subject, status, date } = data[id]
+          return <TableRow subject={subject} status={status} date={date} />
         })}
       </Table>
     </Status>

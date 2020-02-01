@@ -23,10 +23,10 @@ const sendsayMiddleware = store => next => {
     const { type } = action
     const payload = action.sendsay
 
-    next({ type, payload, pending: true })
+    next({ ...action, pending: true, sendsay: null })
     return actionsMap[type](payload).then(
-      response => next({ type, payload, response }),
-      error => next({ type, payload, error })
+      response => next({ ...action, payload, response, sendsay: null }),
+      error => next({ ...action, payload, error, sendsay: null })
     )
   }
 }

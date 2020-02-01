@@ -1,6 +1,8 @@
 import React from 'react'
 import TableData from '../atoms/table-data'
 import styled from 'styled-components'
+import { format } from 'date-fns'
+import { ru } from 'date-fns/locale'
 
 const getColor = status => {
   switch (status) {
@@ -29,10 +31,11 @@ const getStatus = status => {
 
 export default ({ date, subject, status }) => {
   const [statusCode, statusText] = getStatus(+status)
+  const formattedDate = !date ? '' : format(date, 'dd MMMM', { locale: ru })
 
   return (
     <tr>
-      <TableData>{date}</TableData>
+      <TableData>{formattedDate}</TableData>
       <TableData>{subject}</TableData>
       <ColoredTableData status={statusCode}>{statusText}</ColoredTableData>
     </tr>
