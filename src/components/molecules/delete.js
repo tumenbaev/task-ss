@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { memo, useMemo, useCallback } from 'react'
 import styled from 'styled-components'
 import LinkButton from '../atoms/link-button'
 import Trash from '../../assets/trash.svg'
@@ -13,6 +13,10 @@ const DeleteWrap = styled.div`
   padding: 10px 15px 10px 10px;
   line-height: 20px;
   min-width: 0;
+
+  * + * {
+    margin-left: 10px;
+  }
 `
 
 const LargeClip = styled(Clip)`
@@ -42,8 +46,9 @@ const splitLabel = label => {
   return [chunks.join('.'), '.' + extension]
 }
 
-const Delete = ({ label = '' }) => {
+const Delete = ({ label = '', onClick }) => {
   const [fileName, extension] = useMemo(() => splitLabel(label), [label])
+  const handleClick = useCallback(() => onClick(label), [onClick, label])
 
   return (
     <DeleteWrap>
@@ -54,7 +59,7 @@ const Delete = ({ label = '' }) => {
         <LabelText>{fileName}</LabelText>
         {extension}
       </Label>
-      <LinkButton danger>
+      <LinkButton danger type='button' onClick={handleClick}>
         <Icon>
           <Trash />
         </Icon>
@@ -64,4 +69,4 @@ const Delete = ({ label = '' }) => {
   )
 }
 
-export default Delete
+export default memo(Delete)

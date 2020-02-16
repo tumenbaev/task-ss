@@ -1,14 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Attach from './molecules/attach'
+import Attaches from './fields/attaches'
 import Input from './fields/input'
 import InputGroup from './atoms/input-group'
 import TextArea from './fields/text-area'
 import SubmitButton from './atoms/submit-button'
 import { useDispatch, useSelector } from 'react-redux'
 import { sendAndTrack } from '../redux/messages'
-import Delete from './molecules/delete'
-import Grid from './atoms/grid'
 import Label from './atoms/label'
 import Row from './atoms/row'
 
@@ -76,11 +74,7 @@ export default () => {
       <Row>
         <Label>Сообщение</Label>
         <TextArea name='message' />
-        <Grid>
-          <Delete label='somefile.jpg' />
-          <Delete label='somefile.jpg' />
-        </Grid>
-        <Attach />
+        <Attaches name='files' />
       </Row>
       <SubmitButton>Отправить</SubmitButton>
     </Form>

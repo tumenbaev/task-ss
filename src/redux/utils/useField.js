@@ -6,19 +6,27 @@ import { change } from '../form'
 const getValueSelector = name =>
   createSelector(
     store => store.form[name],
-    value => value || ''
+    value => value
   )
 
-export default name => {
+export const useValue = name => {
   const valueSelector = useMemo(() => getValueSelector(name), [name])
-  const value = useSelector(valueSelector)
+  return useSelector(valueSelector)
+}
+
+export const useChange = (name, getValue) => {
   const dispatch = useDispatch()
-  const onChange = useCallback(
+  return useCallback(
     event => {
-      dispatch(change(name, event.target.value))
+      dispatch(change(name, getValue(event)))
     },
-    [dispatch, name]
+    [dispatch, name, getValue]
   )
+}
+
+export default name => {
+  const value = useValue(name) || ''
+  const onChange = useChange(name, event => event.target.value)
 
   return [value, onChange]
 }
