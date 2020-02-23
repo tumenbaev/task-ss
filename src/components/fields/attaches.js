@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import Attach from '../molecules/attach'
 import { useValue, useChange } from '../../redux/utils/useField'
 import Grid from '../atoms/grid'
-import Delete from '../molecules/delete'
+import AttachedItem from '../molecules/attached-item'
 import { useDispatch } from 'react-redux'
 import { deleteFile } from '../../redux/form'
 
@@ -10,7 +10,10 @@ function AttachesField({ name }) {
   const dispatch = useDispatch()
   const files = useValue(name) || []
   const onChange = useChange(name, event => {
-    return [...files, ...event.target.files]
+    const newFiles = [...event.target.files].filter(newFile => {
+      return !files.some(file => file.name === newFile.name)
+    })
+    return [...files, ...newFiles]
   })
 
   const handleDelete = useCallback(
@@ -23,11 +26,12 @@ function AttachesField({ name }) {
   return (
     <>
       <Grid>
-        {Array.prototype.map.call(files, ({ name: label }) => (
-          <Delete label={label} key={label} onClick={handleDelete} />
+        {files.map(({ name: label }, index) => (
+          <AttachedItem label={label} key={index} onClick={handleDelete} />
         ))}
       </Grid>
       <Attach
+        key={files.reduce((acc, file) => acc + file.name, '')}
         name={name}
         onChange={onChange}
         multiple

@@ -2,14 +2,8 @@ import { getApi } from './api'
 import { SEND, TRACK } from '../redux/messages'
 
 const getActionsMap = api => ({
-  [SEND]: action => {
-    const { subject, from, to, message } = action
-    return api.send({ subject, from, to, message })
-  },
-  [TRACK]: action => {
-    const { id } = action
-    return api.track({ id })
-  },
+  [SEND]: action => api.send(action),
+  [TRACK]: action => api.track(action),
 })
 
 const sendsayMiddleware = store => next => {

@@ -5,7 +5,7 @@ import Trash from '../../assets/trash.svg'
 import Icon from '../atoms/icon'
 import Clip from '../../assets/clip.svg'
 
-const DeleteWrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
@@ -46,12 +46,12 @@ const splitLabel = label => {
   return [chunks.join('.'), '.' + extension]
 }
 
-const Delete = ({ label = '', onClick }) => {
+const AttachedItem = ({ label = '', onClick }) => {
   const [fileName, extension] = useMemo(() => splitLabel(label), [label])
   const handleClick = useCallback(() => onClick(label), [onClick, label])
 
   return (
-    <DeleteWrap>
+    <Wrap>
       <Label>
         <Icon>
           <LargeClip />
@@ -65,8 +65,8 @@ const Delete = ({ label = '', onClick }) => {
         </Icon>
         <span>Удалить</span>
       </LinkButton>
-    </DeleteWrap>
+    </Wrap>
   )
 }
 
-export default memo(Delete)
+export default memo(AttachedItem)

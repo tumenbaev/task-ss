@@ -36,11 +36,13 @@ export default () => {
       receiverName,
       receiverEmail,
       message,
+      attaches,
     } = form
     return {
       subject,
       from: { name: senderName, email: senderEmail },
       to: { name: receiverName, email: receiverEmail },
+      attaches,
       message,
     }
   })
@@ -74,7 +76,7 @@ export default () => {
       <Row>
         <Label>Сообщение</Label>
         <TextArea name='message' />
-        <Attaches name='files' />
+        <Attaches name='attaches' />
       </Row>
       <SubmitButton>Отправить</SubmitButton>
     </Form>
