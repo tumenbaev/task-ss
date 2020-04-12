@@ -1,6 +1,8 @@
-export const CHANGE = 'task-sendsay/form/change'
-export const SET_FILE = 'task-sendsay/form/setFile'
-export const DELETE_FILE = 'task-sendsay/form/deleteFile'
+import { createAction } from 'redux-act'
+
+export const change = createAction('task-sendsay/form/change')
+export const setFile = createAction('task-sendsay/form/setFile')
+export const deleteFile = createAction('task-sendsay/form/deleteFile')
 
 const initialState = {
   senderName: 'foo',
@@ -12,14 +14,15 @@ const initialState = {
 }
 
 function filesReducer(state = [], action) {
+  const { payload } = action
   switch (action.type) {
-    case SET_FILE:
-      const newFiles = [...action.files].filter(
+    case String(setFile):
+      const newFiles = [...payload.files].filter(
         newFile => !state.some(file => file.name === newFile.name)
       )
       return newFiles.length ? [...state, ...newFiles] : state
-    case DELETE_FILE:
-      const { label } = action
+    case String(deleteFile):
+      const { label } = payload
       return state.filter(item => item.name !== label)
     default:
       return state
@@ -27,16 +30,17 @@ function filesReducer(state = [], action) {
 }
 
 export default function formReducer(state = initialState, action) {
+  const { payload } = action
   switch (action.type) {
-    case CHANGE:
-      const { name, value } = action
+    case String(change):
+      const { name, value } = payload
       return {
         ...state,
         [name]: value,
       }
-    case SET_FILE:
-    case DELETE_FILE:
-      const { field } = action
+    case String(setFile):
+    case String(deleteFile):
+      const { field } = payload
       return {
         ...state,
         [field]: filesReducer(state[field], action),
@@ -45,21 +49,3 @@ export default function formReducer(state = initialState, action) {
       return state
   }
 }
-
-export const change = (name, value) => ({
-  type: CHANGE,
-  value,
-  name,
-})
-
-export const setFile = (field, files) => ({
-  type: SET_FILE,
-  files,
-  field,
-})
-
-export const deleteFile = (field, label) => ({
-  type: DELETE_FILE,
-  label,
-  field,
-})

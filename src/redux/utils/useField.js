@@ -18,7 +18,7 @@ export const useChange = (name, getValue) => {
   const dispatch = useDispatch()
   return useCallback(
     event => {
-      dispatch(change(name, getValue(event)))
+      dispatch(change({ name, value: getValue(event) }))
     },
     [dispatch, name, getValue]
   )

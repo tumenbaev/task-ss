@@ -21,16 +21,24 @@ function toBase64(file) {
 }
 
 const api = {
-  send: ({ subject, from, to, message, attaches }) => {
+  send({
+    subject,
+    senderName,
+    senderEmail,
+    receiverName,
+    receiverEmail,
+    message,
+    attaches = [],
+  }) {
     return Promise.all(attaches.map(attach => toBase64(attach)))
       .then(encodedAttaches =>
         sendsay.performRequest({
           action: SS_SEND,
           letter: {
             subject,
-            'from.name': from.name,
-            'from.email': from.email,
-            'to.name': to.name,
+            'from.name': senderName,
+            'from.email': senderEmail,
+            'to.name': receiverName,
             message: { text: message },
             attaches: encodedAttaches.map(({ name, content }) => ({
               name,
@@ -39,12 +47,12 @@ const api = {
             })),
           },
           sendwhen: 'test',
-          mca: [to.email],
+          mca: [receiverEmail],
         })
       )
       .then(response => response['track.id'])
   },
-  track: ({ id }) => {
+  track({ id }) {
     return sendsay
       .performRequest({
         action: SS_TRACK,

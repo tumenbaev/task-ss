@@ -1,9 +1,9 @@
 import { getApi } from './api'
-import { SEND, TRACK } from '../redux/messages'
+import { send, track } from '../redux/messages'
 
 const getActionsMap = api => ({
-  [SEND]: action => api.send(action),
-  [TRACK]: action => api.track(action),
+  [send]: action => api.send(action),
+  [track]: action => api.track(action),
 })
 
 const sendsayMiddleware = store => next => {
@@ -11,16 +11,16 @@ const sendsayMiddleware = store => next => {
   const actionsMap = getActionsMap(api)
 
   return action => {
-    if (!action.sendsay) {
+    if (!action.meta || !action.meta.sendsay) {
       return next(action)
     }
-    const { type } = action
-    const payload = action.sendsay
+    const { type, payload } = action
 
-    next({ ...action, pending: true, sendsay: null })
+    next({ type, payload, pending: true })
+
     return actionsMap[type](payload).then(
-      response => next({ ...action, payload, response, sendsay: null }),
-      error => next({ ...action, payload, error, sendsay: null })
+      response => next({ type, payload, response }),
+      error => next({ type, payload, error })
     )
   }
 }

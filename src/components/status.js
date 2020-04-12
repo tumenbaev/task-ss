@@ -22,24 +22,24 @@ export default () => {
   })
   const messageIds = Object.keys(data)
 
-  if (messageIds.length === 0) {
-    return null
-  }
-
   return (
     <Status>
       <Header2>Отправленные сообщения</Header2>
-      <Table>
-        <tr>
-          <TableHeader>Дата</TableHeader>
-          <TableHeader>Тема</TableHeader>
-          <TableHeader>Статус</TableHeader>
-        </tr>
-        {messageIds.map(id => {
-          const { subject, status, date } = data[id]
-          return <TableRow subject={subject} status={status} date={date} />
-        })}
-      </Table>
+      {messageIds.length ? (
+        <Table>
+          <tr>
+            <TableHeader>Дата</TableHeader>
+            <TableHeader>Тема</TableHeader>
+            <TableHeader>Статус</TableHeader>
+          </tr>
+          {messageIds.map(id => {
+            const { subject, status, date } = data[id]
+            return <TableRow subject={subject} status={status} date={date} />
+          })}
+        </Table>
+      ) : (
+        'Сообщения ещё не отправлялись'
+      )}
     </Status>
   )
 }

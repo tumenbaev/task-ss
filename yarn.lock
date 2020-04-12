@@ -10088,6 +10088,11 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
+redux-act@^1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/redux-act/-/redux-act-1.7.9.tgz#f34c1680fc0fa8038c092d61ec651e1a026a7180"
+  integrity sha512-yyynhBNRBuz6u79q7jFUiZUwdIXYbUcIsyenfqX/CP/8DBLps6LutNv42sQ4i2rvT6cCazxD6r7wsRDq45x3ig==
+
 redux-devtools-extension@^2.13.8:
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"

@@ -12,7 +12,7 @@ function AttachesField({ name }) {
 
   const onChange = useCallback(
     event => {
-      dispatch(setFile(name, event.target.files))
+      dispatch(setFile({ field: name, files: event.target.files }))
     },
     [name, dispatch]
   )

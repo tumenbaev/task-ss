@@ -29,29 +29,11 @@ const Header = styled.h2`
 
 export default () => {
   const dispatch = useDispatch()
-  const payload = useSelector(store => {
-    const { form } = store
-    const {
-      subject,
-      senderName,
-      senderEmail,
-      receiverName,
-      receiverEmail,
-      message,
-      attaches,
-    } = form
-    return {
-      subject,
-      from: { name: senderName, email: senderEmail },
-      to: { name: receiverName, email: receiverEmail },
-      attaches,
-      message,
-    }
-  })
+  const form = useSelector(({ form }) => form)
 
   const handleSubmit = event => {
     event.preventDefault()
-    dispatch(sendAndTrack(payload))
+    dispatch(sendAndTrack(form))
   }
 
   return (

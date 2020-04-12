@@ -68,7 +68,7 @@ function FilesCatcher({ name, children }) {
   }, [])
   const handleDrop = useCallback(
     event => {
-      dispatch(setFile(name, event.dataTransfer.files))
+      dispatch(setFile({ field: name, files: event.dataTransfer.files }))
       dropDepth.current = 0
       setVisible(false)
       event.preventDefault()

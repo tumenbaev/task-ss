@@ -1,5 +1,15 @@
-export const SEND = 'task-sendsay/messages/send'
-export const TRACK = 'task-sendsay/messages/track'
+import { createAction } from 'redux-act'
+
+function createSendsayAction(action) {
+  return createAction(
+    action,
+    payload => payload,
+    () => ({ sendsay: true })
+  )
+}
+
+export const send = createSendsayAction('task-sendsay/messages/send')
+export const track = createSendsayAction('task-sendsay/messages/track')
 
 const initialState = {
   data: {},
@@ -7,7 +17,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SEND: {
+    case String(send): {
       if (action.response) {
         return {
           ...state,
@@ -16,7 +26,7 @@ export default (state = initialState, action) => {
       }
       break
     }
-    case TRACK: {
+    case String(track): {
       if (action.response !== undefined) {
         return {
           ...state,
@@ -34,7 +44,7 @@ export default (state = initialState, action) => {
 
 const dataReducer = (state, action) => {
   switch (action.type) {
-    case SEND: {
+    case String(send): {
       if (action.response) {
         return {
           ...state,
@@ -47,7 +57,7 @@ const dataReducer = (state, action) => {
       }
       break
     }
-    case TRACK: {
+    case String(track): {
       if (action.response !== undefined) {
         return {
           ...state,
@@ -66,17 +76,6 @@ const dataReducer = (state, action) => {
   return state
 }
 
-export const send = (payload, date) => ({
-  type: SEND,
-  sendsay: payload,
-  date,
-})
-
-export const track = payload => ({
-  type: TRACK,
-  sendsay: { id: payload },
-})
-
 const trackTillEnd = id => dispatch => {
   let resolve
   const promise = new Promise(r => {
@@ -84,7 +83,7 @@ const trackTillEnd = id => dispatch => {
   })
 
   const loop = id =>
-    dispatch(track(id)).then(({ response: status }) => {
+    dispatch(track({ id })).then(({ response: status }) => {
       if (status >= 0) {
         setTimeout(loop.bind(null, id), 1000)
       } else {
@@ -97,8 +96,12 @@ const trackTillEnd = id => dispatch => {
   return promise
 }
 
-export const sendAndTrack = payload => dispatch => {
-  return dispatch(send(payload, Date.now())).then(({ response: id }) => {
+export const sendAndTrack = form => dispatch => {
+  const payload = {
+    ...form,
+    date: Date.now(),
+  }
+  return dispatch(send(payload)).then(({ response: id }) => {
     window.scrollTo(0, document.body.scrollHeight)
     return dispatch(trackTillEnd(id))
   })
