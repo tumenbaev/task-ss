@@ -1,16 +1,13 @@
 import { createAction } from 'redux-act'
 
 export const change = createAction('task-sendsay/form/change')
+export const setError = createAction('task-sendsay/form/setError')
 export const setFile = createAction('task-sendsay/form/setFile')
 export const deleteFile = createAction('task-sendsay/form/deleteFile')
 
 const initialState = {
-  senderName: 'foo',
-  senderEmail: 'tumenbaev@gmail.com',
-  receiverName: 'rfoo',
-  receiverEmail: 'tumenbaev@gmail.com',
-  subject: 'some subj',
-  message: 'message',
+  values: {},
+  errors: {},
 }
 
 function filesReducer(state = [], action) {
@@ -32,12 +29,26 @@ function filesReducer(state = [], action) {
 export default function formReducer(state = initialState, action) {
   const { payload } = action
   switch (action.type) {
-    case String(change):
+    case String(change): {
       const { name, value } = payload
       return {
         ...state,
-        [name]: value,
+        values: {
+          ...state.values,
+          [name]: value,
+        },
       }
+    }
+    case String(setError): {
+      const { name, error } = payload
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [name]: error,
+        },
+      }
+    }
     case String(setFile):
     case String(deleteFile):
       const { field } = payload

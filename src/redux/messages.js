@@ -16,64 +16,39 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case String(send): {
-      if (action.response) {
-        return {
-          ...state,
-          data: dataReducer(state.data, action),
-        }
-      }
-      break
+  if (action.response !== undefined) {
+    return {
+      ...state,
+      data: dataReducer(state.data, action),
     }
-    case String(track): {
-      if (action.response !== undefined) {
-        return {
-          ...state,
-          data: dataReducer(state.data, action),
-        }
-      }
-      break
-    }
-    default:
-      return state
   }
-
   return state
 }
 
 const dataReducer = (state, action) => {
   switch (action.type) {
     case String(send): {
-      if (action.response) {
-        return {
-          ...state,
-          [action.response]: {
-            ...action.payload,
-            date: action.date,
-            status: 0,
-          },
-        }
+      return {
+        ...state,
+        [action.response]: {
+          ...action.payload,
+          date: action.date,
+          status: 0,
+        },
       }
-      break
     }
     case String(track): {
-      if (action.response !== undefined) {
-        return {
-          ...state,
-          [action.payload.id]: {
-            ...state[action.payload.id],
-            status: action.response,
-          },
-        }
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          status: action.response,
+        },
       }
-      break
     }
     default:
       return state
   }
-
-  return state
 }
 
 const trackTillEnd = id => dispatch => {

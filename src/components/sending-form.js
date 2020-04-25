@@ -10,14 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { sendAndTrack } from '../redux/messages'
 import Label from './atoms/label'
 import Row from './atoms/row'
-
-const Form = styled.form`
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 30px;
-  position: relative;
-`
+import Form from './form'
 
 const Header = styled.h2`
   color: black;
@@ -31,13 +24,17 @@ export default () => {
   const dispatch = useDispatch()
   const form = useSelector(({ form }) => form)
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    dispatch(sendAndTrack(form))
+  const handleSubmit = () => {
+    //dispatch(sendAndTrack(form))
+  }
+
+  const validator = {
+    senderEmail: value =>
+      (!value || value.length < 0) && 'Email не может быть пустым',
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} validation={validator}>
       <FilesCatcher name='attaches'>
         <Header>Отправлялка сообщений</Header>
         <Row>

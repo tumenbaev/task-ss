@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import Attach from '../molecules/attach'
-import { useValue } from '../../redux/utils/useField'
+import { useValue } from '../form/useField'
 import Grid from '../atoms/grid'
 import AttachedItem from '../molecules/attached-item'
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,7 @@ import { setFile, deleteFile } from '../../redux/form'
 
 function AttachesField({ name }) {
   const dispatch = useDispatch()
-  const files = useValue(name) || []
+  const [files = []] = useValue(name)
 
   const onChange = useCallback(
     event => {
